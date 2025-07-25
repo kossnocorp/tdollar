@@ -1,0 +1,15 @@
+{
+  "name": "tdollar",
+  "version": "0.0.0",
+  "description": "Essential TypeScript type utilities",
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "license": "MIT",
+  "packageManager": "pnpm@10.13.1",
+  "files": [
+    "*.md",
+    "lib"
+  ],
+  "devDependencies": {
+    "typescript": "5.9.0-beta"
+  }
+}
