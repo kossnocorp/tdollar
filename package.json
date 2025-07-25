@@ -4,12 +4,32 @@
   "description": "Essential TypeScript type utilities",
   "author": "Sasha Koss <koss@nocorp.me>",
   "license": "MIT",
-  "packageManager": "pnpm@10.13.1",
   "files": [
     "*.md",
     "lib"
   ],
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      "./package.json": "./package.json",
+      ".": {
+        "require": {
+          "types": "./index.d.cts",
+          "default": "./index.cjs"
+        },
+        "import": {
+          "types": "./index.d.ts",
+          "default": "./index.js"
+        }
+      }
+    }
+  },
   "devDependencies": {
     "typescript": "5.9.0-beta"
-  }
+  },
+  "packageManager": "pnpm@10.13.1"
 }
