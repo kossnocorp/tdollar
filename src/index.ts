@@ -2,16 +2,16 @@ export namespace $ {
   //#region Extreme
 
   export namespace Is {
-    export type Extreme<Type> = Or<
-      Is.Any<Type>,
-      Is.Unknown<Type>,
-      Is.Never<Type>
-    >;
+    export type Extreme<Type> = Or<Is.Top<Type>, Is.Never<Type>>;
   }
 
   //#region Top
 
   export type Top = any | unknown;
+
+  export namespace Is {
+    export type Top<Type> = Or<Is.Any<Type>, Is.Unknown<Type>>;
+  }
 
   //#endregion
 
@@ -42,6 +42,18 @@ export namespace $ {
   }
 
   //#endregion
+
+  //#endregion
+
+  //#region Undefined
+
+  export namespace Is {
+    export type Undefined<Type> = Is.Top<Type> extends true
+      ? false
+      : Type extends undefined
+      ? true
+      : false;
+  }
 
   //#endregion
 
@@ -117,6 +129,14 @@ export namespace $ {
   export type Branded<Type, Symbol extends symbol> = Type & {
     [Key in Symbol]: true;
   };
+
+  //#endregion
+
+  //#render Display
+
+  export type Transparent<Type> = Type extends infer Type
+    ? { [Key in keyof Type]: Type[Key] }
+    : never;
 
   //#endregion
 }
