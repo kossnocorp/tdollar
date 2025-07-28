@@ -69,6 +69,22 @@ export namespace $ {
 
   export type ObjectLike = object | {};
 
+  //#region NonNullishValue
+
+  export type NonNullishValue = {};
+
+  export namespace Is {
+    export type NonNullishValue<Type> = Is.Any<Type> extends true
+      ? false
+      : [Type] extends [object]
+      ? string extends Type
+        ? true
+        : false
+      : false;
+  }
+
+  //#endregion
+
   //#region Conditions
 
   export type Not<Type> = Type extends true ? false : true;
