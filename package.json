@@ -34,7 +34,7 @@
     }
   },
   "devDependencies": {
-    "typescript": "5.9.0-beta"
+    "typescript": "5.9.2"
   },
   "packageManager": "pnpm@10.13.1"
 }
