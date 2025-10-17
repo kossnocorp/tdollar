@@ -90,51 +90,51 @@ export namespace $ {
   export type Not<Type> = Type extends true ? false : true;
 
   export type And<
-    Type1,
-    Type2,
-    Type3 = Type2,
-    Type4 = Type3,
-    Type5 = Type4,
-    Type6 = Type5,
-    Type7 = Type6,
-    Type8 = Type7,
-    Type9 = Type8,
-    Type10 = Type9
-  > = true extends Type1 &
-    Type2 &
-    Type3 &
-    Type4 &
-    Type5 &
-    Type6 &
-    Type7 &
-    Type8 &
-    Type9 &
-    Type10
+    Cond1,
+    Cond2,
+    Cond3 = Cond2,
+    Cond4 = Cond3,
+    Cond5 = Cond4,
+    Cond6 = Cond5,
+    Cond7 = Cond6,
+    Cond8 = Cond7,
+    Cond9 = Cond8,
+    Cond10 = Cond9
+  > = true extends Cond1 &
+    Cond2 &
+    Cond3 &
+    Cond4 &
+    Cond5 &
+    Cond6 &
+    Cond7 &
+    Cond8 &
+    Cond9 &
+    Cond10
     ? true
     : false;
 
   export type Or<
-    Type1,
-    Type2,
-    Type3 = Type2,
-    Type4 = Type3,
-    Type5 = Type4,
-    Type6 = Type5,
-    Type7 = Type6,
-    Type8 = Type7,
-    Type9 = Type8,
-    Type10 = Type9
+    Cond1,
+    Cond2,
+    Cond3 = Cond2,
+    Cond4 = Cond3,
+    Cond5 = Cond4,
+    Cond6 = Cond5,
+    Cond7 = Cond6,
+    Cond8 = Cond7,
+    Cond9 = Cond8,
+    Cond10 = Cond9
   > = true extends
-    | Type1
-    | Type2
-    | Type3
-    | Type4
-    | Type5
-    | Type6
-    | Type7
-    | Type8
-    | Type9
-    | Type10
+    | Cond1
+    | Cond2
+    | Cond3
+    | Cond4
+    | Cond5
+    | Cond6
+    | Cond7
+    | Cond8
+    | Cond9
+    | Cond10
     ? true
     : false;
 
@@ -148,7 +148,7 @@ export namespace $ {
 
   //#endregion
 
-  //#render Display
+  //#region Display
 
   export type Transparent<Type> = Type extends infer Type
     ? { [Key in keyof Type]: Type[Key] }
