@@ -1,13 +1,9 @@
 {
   "name": "tdollar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Essential TypeScript type utilities wrapped into a single namespace $",
   "author": "Sasha Koss <koss@nocorp.me>",
   "license": "MIT",
-  "files": [
-    "*.md",
-    "lib"
-  ],
   "types": "./src/index.d.ts",
   "exports": {
     ".": "./src/index.d.ts"
