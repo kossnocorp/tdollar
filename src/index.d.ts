@@ -1,4 +1,4 @@
-export namespace $ {
+export declare namespace $ {
   //#region Extreme
 
   export namespace Is {
@@ -48,11 +48,8 @@ export namespace $ {
   //#region Undefined
 
   export namespace Is {
-    export type Undefined<Type> = Is.Top<Type> extends true
-      ? false
-      : Type extends undefined
-      ? true
-      : false;
+    export type Undefined<Type> =
+      Is.Top<Type> extends true ? false : Type extends undefined ? true : false;
   }
 
   //#endregion
@@ -74,13 +71,14 @@ export namespace $ {
   export type NonNullishValue = {};
 
   export namespace Is {
-    export type NonNullishValue<Type> = Is.Any<Type> extends true
-      ? false
-      : [Type] extends [object]
-      ? string extends Type
-        ? true
-        : false
-      : false;
+    export type NonNullishValue<Type> =
+      Is.Any<Type> extends true
+        ? false
+        : [Type] extends [object]
+          ? string extends Type
+            ? true
+            : false
+          : false;
   }
 
   //#endregion
@@ -99,7 +97,7 @@ export namespace $ {
     Cond7 = Cond6,
     Cond8 = Cond7,
     Cond9 = Cond8,
-    Cond10 = Cond9
+    Cond10 = Cond9,
   > = true extends Cond1 &
     Cond2 &
     Cond3 &
@@ -123,7 +121,7 @@ export namespace $ {
     Cond7 = Cond6,
     Cond8 = Cond7,
     Cond9 = Cond8,
-    Cond10 = Cond9
+    Cond10 = Cond9,
   > = true extends
     | Cond1
     | Cond2
