@@ -68,9 +68,40 @@ export declare namespace $ {
 
   //#region Object
 
+  export namespace Is {
+    /**
+     * Resolves true if the given key is statically defined in the given type.
+     */
+    export type StaticKey<Type extends object, Key extends keyof Type & {}> =
+      Key extends Key.Static<Type> ? true : false;
+  }
+
+  export namespace Pick {
+    export type Optional<Type extends object> = {
+      [Key in keyof Type as Is.StaticKey<Type, Key> extends true
+        ? Partial<Pick<Type, Key>> extends Pick<Type, Key>
+          ? Key
+          : never
+        : never]: Type[Key];
+    };
+
+    /**
+     * Omits indexed fields leaving only statically defined.
+     */
+    export type Static<Type extends object> = {
+      [Key in keyof Type as string extends Debrand<Key>
+        ? never
+        : number extends Debrand<Key>
+          ? never
+          : symbol extends Debrand<Key>
+            ? never
+            : Key]: Type[Key];
+    };
+  }
+
   export namespace Omit {
     export type Value<Type extends object, ValueType> = {
-      [Key in keyof Type as Type[Key] extends ValueType
+      [Key in keyof Type as Value.Normalize<Type, Key> extends ValueType
         ? never
         : Key]: Type[Key];
     };
@@ -81,6 +112,22 @@ export declare namespace $ {
   export namespace Has {
     export type NeverValue<Type extends object> =
       keyof Type extends keyof Omit.NeverValue<Type> ? false : true;
+  }
+
+  export namespace Key {
+    export type NeverValue<Type extends object> = Exclude<
+      keyof Type,
+      keyof Omit.NeverValue<Type>
+    >;
+
+    export type Static<Type extends object> = keyof Pick.Static<Type>;
+  }
+
+  export namespace Value {
+    export type Normalize<
+      Type extends object,
+      Key extends keyof Type,
+    > = Required<Type>[Key];
   }
 
   //#endregion
