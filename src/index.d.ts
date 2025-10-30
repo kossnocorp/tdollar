@@ -144,6 +144,17 @@ export declare namespace $ {
     [Key in Symbol]: true;
   };
 
+  /**
+   * Resolves type without a brand. It extracts bare primitive from a branded
+   * type, or returns the type itself if it is not branded.
+   */
+  export type Debrand<Type> = Type extends infer _Brand extends
+    /* any brand */ {
+      [key: keyof any]: any;
+    } & (infer Debranded extends Primitive)
+    ? Debranded
+    : Type;
+
   //#endregion
 
   //#region Display
