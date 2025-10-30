@@ -74,6 +74,11 @@ export declare namespace $ {
      */
     export type StaticKey<Type extends object, Key extends keyof Type & {}> =
       Key extends Key.Static<Type> ? true : false;
+
+    /**
+     * Resolves true if the given object has no statically defined keys.
+     */
+    export type Indexed<Type extends object> = $.Is.Never<Key.Static<Type>>;
   }
 
   export namespace Pick {

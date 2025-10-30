@@ -3,6 +3,15 @@ import { $ } from ".";
 
 //#region Object
 
+// $.Is.Indexed
+{
+  type IndexedType = Record<string, number>;
+  ty<$.Is.Indexed<IndexedType>>().is(ty(true));
+  ty<$.Is.Indexed<IndexedType & { nope: string }>>().is(ty(false));
+  ty<$.Is.Indexed<IndexedType & { nope?: string }>>().is(ty(false));
+  ty<$.Is.Indexed<IndexedType & { [key: number]: string }>>().is(ty(true));
+}
+
 // $.Omit.NeverValue
 {
   type Type = { a: never; b: string };
