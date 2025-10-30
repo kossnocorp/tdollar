@@ -66,6 +66,18 @@ export declare namespace $ {
 
   export type ObjectLike = object | {};
 
+  //#region Array
+
+  export namespace Is {
+    export type Array<Type> = Type extends any[] ? true : false;
+
+    export type ReadonlyArray<Type> = Type extends readonly any[]
+      ? true
+      : false;
+  }
+
+  //#endregion
+
   //#region Object
 
   export namespace Is {
