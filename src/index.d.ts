@@ -66,6 +66,25 @@ export declare namespace $ {
 
   export type ObjectLike = object | {};
 
+  //#region Object
+
+  export namespace Omit {
+    export type Value<Type extends object, ValueType> = {
+      [Key in keyof Type as Type[Key] extends ValueType
+        ? never
+        : Key]: Type[Key];
+    };
+
+    export type NeverValue<Type extends object> = Value<Type, never>;
+  }
+
+  export namespace Has {
+    export type NeverValue<Type extends object> =
+      keyof Type extends keyof Omit.NeverValue<Type> ? false : true;
+  }
+
+  //#endregion
+
   //#region NonNullishValue
 
   export type NonNullishValue = {};
